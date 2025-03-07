@@ -64,7 +64,7 @@ add_executable(offboard_control_srv src/examples/offboard/offboard_control_srv.c
 ament_target_dependencies(offboard_control_srv rclcpp px4_msgs)
 install(TARGETS offboard_control_srv DESTINATION lib/${PROJECT_NAME})
 
-# App
+# My Applications
 include_directories(${OpenCV_INCLUDE_DIRS} ${cv_bridge_INCLUDE_DIRS})
 add_executable(reconnaissance src/app/reconnaissance/reconnaissance.cpp)
 ament_target_dependencies(reconnaissance rclcpp px4_msgs cv_bridge sensor_msgs)
@@ -72,8 +72,14 @@ target_link_libraries(reconnaissance ${OpenCV_LIBS} ${cv_bridge_LIBRARIES})
 install(TARGETS reconnaissance DESTINATION lib/${PROJECT_NAME})
 
 include_directories(${OpenCV_INCLUDE_DIRS} ${cv_bridge_INCLUDE_DIRS})
-add_executable(fireforce src/app/fireforce/fireforce.cpp)
+add_executable(fireforce
+    src/app/fireforce/fireforce.cpp
+    src/app/helper.cpp
+    src/app/publishers.cpp
+    src/app/subscribers.cpp
+)
 ament_target_dependencies(fireforce rclcpp px4_msgs cv_bridge sensor_msgs)
+target_include_directories(fireforce PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src/app/)
 target_link_libraries(fireforce ${OpenCV_LIBS} ${cv_bridge_LIBRARIES} CURL::libcurl)
 install(TARGETS fireforce DESTINATION lib/${PROJECT_NAME})
 

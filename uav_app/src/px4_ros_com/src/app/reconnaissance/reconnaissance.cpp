@@ -27,12 +27,12 @@ using namespace std::chrono_literals;
 using namespace px4_msgs::msg;
 
 
-class UAVCommand : public rclcpp::Node
+class ReconNode : public rclcpp::Node
 {
     public:
 
 		// Node constructor
-		explicit UAVCommand();
+		explicit ReconNode();
 
 		// Subscriber Callbacks
 		void read_vehicle_attitude(const VehicleAttitude::UniquePtr msg);
@@ -105,7 +105,7 @@ class UAVCommand : public rclcpp::Node
  * @brief UAV Command node constructor
  * @link 
  */
-UAVCommand::UAVCommand() : Node("uav_command") {
+ReconNode::ReconNode() : Node("uav_command") {
 
 	std::cout << "=============================Instantiating UAV Command Node=============================" << std::endl;
 
@@ -127,19 +127,19 @@ UAVCommand::UAVCommand() : Node("uav_command") {
 	vehicle_attitude_subscriber = this->create_subscription<VehicleAttitude>(
 		"/fmu/out/vehicle_attitude",
 		qos_deg,
-		std::bind(&UAVCommand::read_vehicle_attitude, this, std::placeholders::_1)
+		std::bind(&ReconNode::read_vehicle_attitude, this, std::placeholders::_1)
 	);
 
 	local_position_subscriber = this->create_subscription<VehicleLocalPosition>(
 		"/fmu/out/vehicle_local_position", 
 		qos_pos,
-		std::bind(&UAVCommand::read_local_position, this, std::placeholders::_1)
+		std::bind(&ReconNode::read_local_position, this, std::placeholders::_1)
 	);
 
 	camera_image_raw_subscriber = this->create_subscription<sensor_msgs::msg::Image>(
 		"/camera/image_raw", 
 		qos_camera,
-		std::bind(&UAVCommand::read_camera_image_raw, this, std::placeholders::_1)
+		std::bind(&ReconNode::read_camera_image_raw, this, std::placeholders::_1)
 	);
 
 	offboard_control_mode_publisher = this->create_publisher<OffboardControlMode>("/fmu/in/offboard_control_mode", 10);
@@ -149,11 +149,11 @@ UAVCommand::UAVCommand() : Node("uav_command") {
 
 	offboard_setpoint_counter_ = 0;
 	
-	timer_ = this->create_wall_timer(300ms, std::bind(&UAVCommand::run_mission, this));
+	timer_ = this->create_wall_timer(300ms, std::bind(&ReconNode::run_mission, this));
 
 }
 
-void UAVCommand::read_vehicle_attitude(const VehicleAttitude::UniquePtr msg) {
+void ReconNode::read_vehicle_attitude(const VehicleAttitude::UniquePtr msg) {
 
 }
 
@@ -162,7 +162,7 @@ void UAVCommand::read_vehicle_attitude(const VehicleAttitude::UniquePtr msg) {
  * @param msg Vehicle Local Position message pointer
  * @link 
  */
-void UAVCommand::read_local_position(const VehicleLocalPosition::UniquePtr msg) {
+void ReconNode::read_local_position(const VehicleLocalPosition::UniquePtr msg) {
 	vehicle_state.x = msg->x;
 	vehicle_state.y = msg->y;
 	vehicle_state.z = msg->z;
@@ -175,7 +175,7 @@ void UAVCommand::read_local_position(const VehicleLocalPosition::UniquePtr msg) 
  * @param msg Camera Image Raw message pointer
  * @link 
  */
-void UAVCommand::read_camera_image_raw(const sensor_msgs::msg::Image::SharedPtr msg) {
+void ReconNode::read_camera_image_raw(const sensor_msgs::msg::Image::SharedPtr msg) {
 
 	try {
 
@@ -265,7 +265,7 @@ void UAVCommand::read_camera_image_raw(const sensor_msgs::msg::Image::SharedPtr 
  * @brief UAV Command Offboard Control Publisher
  * @link 
  */
-void UAVCommand::publish_offboard_control_mode() {
+void ReconNode::publish_offboard_control_mode() {
 	OffboardControlMode msg{};
 	msg.position = true;
 	msg.velocity = false;
@@ -284,7 +284,7 @@ void UAVCommand::publish_offboard_control_mode() {
  * @param yaw yaw angle (rad)
  * @link 
  */
-void UAVCommand::publish_trajectory_setpoint(float x, float y, float z, float yaw) {
+void ReconNode::publish_trajectory_setpoint(float x, float y, float z, float yaw) {
 	TrajectorySetpoint msg{};
 	msg.position = {x, y, z};
 	msg.yaw = yaw; // [-PI:PI]
@@ -299,7 +299,7 @@ void UAVCommand::publish_trajectory_setpoint(float x, float y, float z, float ya
  * @param param2    Command parameter 2
  * @link 
  */
-void UAVCommand::publish_vehicle_command(uint16_t command, float param1, float param2) {
+void ReconNode::publish_vehicle_command(uint16_t command, float param1, float param2) {
 	VehicleCommand msg{};
 	msg.param1 = param1;
 	msg.param2 = param2;
@@ -316,7 +316,7 @@ void UAVCommand::publish_vehicle_command(uint16_t command, float param1, float p
 /**
  * @brief Send a command to Arm the vehicle
  */
-void UAVCommand::arm() { 
+void ReconNode::arm() { 
 	publish_vehicle_command(VehicleCommand::VEHICLE_CMD_COMPONENT_ARM_DISARM, 1.0);
 	RCLCPP_INFO(this->get_logger(), "Arm command send");
 }
@@ -324,7 +324,7 @@ void UAVCommand::arm() {
 /**
  * @brief Send a command to Disarm the vehicle
  */
-void UAVCommand::disarm() {
+void ReconNode::disarm() {
 	publish_vehicle_command(VehicleCommand::VEHICLE_CMD_COMPONENT_ARM_DISARM, 0.0);
 	RCLCPP_INFO(this->get_logger(), "Disarm command send");
 }
@@ -339,7 +339,7 @@ void UAVCommand::disarm() {
  *	5. ms5 -> Confirm target by hovering over vehicle
  *  6. ms6 -> Land
  */
-void UAVCommand::run_mission() {
+void ReconNode::run_mission() {
 
 	auto dist = [] (float x1, float y1, float z1, float x2, float y2, float z2) {
 		return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2) + pow(z2 - z1, 2));
@@ -494,7 +494,7 @@ void UAVCommand::run_mission() {
 int main(int argc, char *argv[]) {
 	setvbuf(stdout, NULL, _IONBF, BUFSIZ);
 	rclcpp::init(argc, argv);
-	rclcpp::spin(std::make_shared<UAVCommand>());
+	rclcpp::spin(std::make_shared<ReconNode>());
 
 	rclcpp::shutdown();
 	return 0;
