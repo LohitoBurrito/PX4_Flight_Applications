@@ -1,14 +1,23 @@
-# FireForce
+# PX4 Flight Applications
 
 ## Abstract
-This repository contains my implementation of a firefighting drone where I preloaded a flight plan, and the drone will attempt to locate fire within a building and then center itself. In general, the drone will be connected to a long hose where the other end of the hose is connected to a hydrant on ground level. 
+This repository contains my implementation of various drone missions where preloaded a flight plan, and the drone will execute based off of control code. In the future, I am researching into things like SLAM and 
+Behaviour Trees to achieve true autonomy without including flight plans. 
 
-## ⭐ Base Repositories and Datasets (Credits) ⭐ <br />
+Note that my main ROS2 C++ control code is located within
+`
+./uav_app/src/px4_ros_com/src/app
+`
+
+## ⭐ Base Repositories ⭐ <br />
 ① [PX4 Documentation](https://docs.px4.io/main/en/ros2/user_guide.html) <br />
 ② [PX4 ROS2 Message Repo](https://github.com/PX4/px4_msgs) <br />
 ③ [PX4 ROS2 Communication Repo](https://github.com/PX4/px4_ros_com) <br />
-④ [Yolov5 Roboflow Train/Val/Test Dataset](https://universe.roboflow.com/swee-xiao-qi/parking-lot-availability) <br />
-  
+
+## Test Videos
+- [Recon Test 1](https://www.youtube.com/watch?v=n0gshWVHZww)
+- [Fire Test 1](https://www.youtube.com/watch?v=nykbBwVcKCo)
+
 ## Installation
 For more information on installation, go to the PX4 Documentation link in credits.
 ### WSL Installation
@@ -71,7 +80,7 @@ sudo apt install gstreamer1.0-plugins-bad gstreamer1.0-libav gstreamer1.0-gl -y
 sudo apt install libfuse2 -y
 sudo apt install libxcb-xinerama0 libxkbcommon-x11-0 libxcb-cursor-dev -y
 ```
-Download the following [link](https://d176tv9ibo4jno.cloudfront.net/latest/QGroundControl.AppImage) to retrieve teh Q Ground Control App Image. Then run the following to turn the app image into a linux executable:
+Download the following [link](https://d176tv9ibo4jno.cloudfront.net/latest/QGroundControl.AppImage) to retrieve the Q Ground Control App Image. Then run the following to turn the app image into a linux executable:
 ```
 cd
 chmod +x ./QGroundControl.AppImage
@@ -80,8 +89,8 @@ chmod +x ./QGroundControl.AppImage
 Ensure you installed the PX4 Development Environment before performing this step. In a new terminal, run the following:
 ```
 cd
-git clone https://github.com/LohitoBurrito/FireForce.git
-mv FireForce/* . && rm -rf FireForce
+git clone https://github.com/LohitoBurrito/PX4_Flight_Applications.git
+mv PX4_Flight_Applications/* . && rm -rf PX4_Flight_Applications
 cd uav_app
 chmod +x setup.sh
 cd
@@ -96,7 +105,17 @@ mv ./gazebo_package/sitl_targets_gazebo-classic.cmake ./PX4-Autopilot/src/module
 sudo rm -rf gazebo_package
 ```
 ## Run Instructions
-If you just performed installation, you can close all 4 terminals, and run 4 new Ubuntu 22.04.5 LTS terminals.
+If you just performed installation, you can close all 4 terminals, and run 4 new Ubuntu 22.04.5 LTS terminals. For the Terminal 3 and 4 commands, you need to fill {world} and {executable} with the appropriate parameters. Below shows a table of combinations of world and executables.
+
+<div align="center">
+  
+| Executable | World |
+|     :---:      |     :---:      |
+|  fireforce  |  iris_depth_camera__fire  |
+|  reconnaisance  |  iris_downward_depth_camera__search_and_rescue |
+
+</div>
+
 ### Terminal 1
 To start the Micro XRCE-DDS Agent, run:
 ```
@@ -112,11 +131,11 @@ To start QGC App Image, run the following:
 Start the Gazebo world by running the following. Note that if it says "gzserver not ready yet, trying again!," keep waiting. (NOTE: If this is your first time running the world, it may take a bit due to creating the build folder)
 ```
 cd PX4-Autopilot/
-make px4_sitl gazebo-classic_iris_depth_camera__fire
+make px4_sitl gazebo-classic_{world}
 ```
 ### Terminal 4
-Run the simulation by executing the following commands (NOTE: If this is your first time running the simulation, it may take a bit due to creating the build, install, and log folder)
+Ensure you have the other terminals running before running this set of terminal commands. Run the simulation by executing the following commands (NOTE: If this is your first time running the simulation, it may take a bit due to creating the build, install, and log folder)
 ```
 cd uav_app/
-./setup.sh firforce
+./setup.sh {executable}
 ```
