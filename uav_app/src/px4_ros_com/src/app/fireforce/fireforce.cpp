@@ -128,6 +128,9 @@ class FireDetectNode : public UAVNode {
         // Override
         void run_mission() override;
         void process_output(cv::Mat& resized_frame, const cv::Mat& output, const std::vector<cv::Rect>& boxes, const std::vector<int> indices) override;
+
+    private:
+        float peak_altitude = -40.0;
 };
 
 /**

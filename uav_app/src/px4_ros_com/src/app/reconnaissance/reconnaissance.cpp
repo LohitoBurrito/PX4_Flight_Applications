@@ -7,6 +7,7 @@ class ReconCommand : public UAVNode {
         void process_output(cv::Mat& resized_frame, const cv::Mat& output, const std::vector<cv::Rect>& boxes, const std::vector<int> indices) override;
     private:
         std::array<float, 4> recon_bounds = { -55.0, 55.0, -55.0, 55.0 };
+        float peak_altitude = -10.0;
 };
 
 /**
@@ -34,8 +35,6 @@ ReconCommand::ReconCommand() {
     vehicle_state.waypoint_y = 0;
     vehicle_state.waypoint_z = 0;
     vehicle_state.ms = 0;
-
-    peak_altitude = -10.0;
 
     create_subscribers();
     create_publishers();

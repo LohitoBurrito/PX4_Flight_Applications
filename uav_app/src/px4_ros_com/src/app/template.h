@@ -104,7 +104,6 @@ class UAVNode : public rclcpp::Node {
 
         VehicleState vehicle_state;
         float tolerarance = 0.75;
-        float peak_altitude = -40.0;
         float pi = 3.14;
 
         SensorMsg sensor_msg;
