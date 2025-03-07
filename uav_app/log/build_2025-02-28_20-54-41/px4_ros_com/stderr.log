@@ -1,3 +1,0 @@
-gmake[2]: *** [CMakeFiles/fireforce.dir/build.make:76: CMakeFiles/fireforce.dir/src/app/fireforce/fireforce.cpp.o] Interrupt
-gmake[1]: *** [CMakeFiles/Makefile2:336: CMakeFiles/fireforce.dir/all] Interrupt
-gmake: *** [Makefile:146: all] Interrupt

@@ -1,8 +1,0 @@
-[ 12%] Built target frame_transforms
-[35m[1mConsolidate compiler generated dependencies of target fireforce[0m
-[ 18%] [32mBuilding CXX object CMakeFiles/fireforce.dir/src/app/fireforce/fireforce.cpp.o[0m
-gmake[2]: *** wait: No child processes.  Stop.
-gmake[2]: *** Waiting for unfinished jobs....
-gmake[2]: *** wait: No child processes.  Stop.
-gmake[1]: *** [CMakeFiles/Makefile2:336: CMakeFiles/fireforce.dir/all] Error 2
-gmake: *** [Makefile:146: all] Interrupt

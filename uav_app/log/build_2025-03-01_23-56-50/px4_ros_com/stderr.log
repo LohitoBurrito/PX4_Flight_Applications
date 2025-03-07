@@ -1,8 +1,0 @@
-In file included from [01m[K/home/lohitoburrito/uav_app/src/px4_ros_com/src/app/fireforce/fireforce.cpp:23[m[K:
-[01m[K/home/lohitoburrito/uav_app/src/px4_ros_com/src/app/fireforce/fireforce.cpp:[m[K In member function ‘[01m[Kvoid HTTPPOSTServer::post_frame()[m[K’:
-[01m[K/home/lohitoburrito/uav_app/src/px4_ros_com/src/app/fireforce/fireforce.cpp:106:51:[m[K [01;31m[Kerror: [m[K‘[01m[Kdata_file[m[K’ was not declared in this scope
-  106 |         curl_easy_setopt(curl, CURLOPT_READDATA, &[01;31m[Kdata_file[m[K);
-      |                                                   [01;31m[K^~~~~~~~~[m[K
-gmake[2]: *** [CMakeFiles/fireforce.dir/build.make:76: CMakeFiles/fireforce.dir/src/app/fireforce/fireforce.cpp.o] Error 1
-gmake[1]: *** [CMakeFiles/Makefile2:336: CMakeFiles/fireforce.dir/all] Error 2
-gmake: *** [Makefile:146: all] Error 2

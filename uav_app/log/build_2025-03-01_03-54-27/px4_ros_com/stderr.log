@@ -1,7 +1,0 @@
-[01m[K/home/lohitoburrito/uav_app/src/px4_ros_com/src/app/fireforce/fireforce.cpp:[m[K In member function ‘[01m[Kvoid UAVCommand::run_mission()[m[K’:
-[01m[K/home/lohitoburrito/uav_app/src/px4_ros_com/src/app/fireforce/fireforce.cpp:361:50:[m[K [01;35m[Kwarning: [m[Kthis statement may fall through [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wimplicit-fallthrough=-Wimplicit-fallthrough=]8;;[m[K]
-  361 |                         [01;35m[Kvehicle_state.waypoint_y = vehicle_state.y + radius * std::sin(target_rad)[m[K;
-      |                         [01;35m[K~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
-[01m[K/home/lohitoburrito/uav_app/src/px4_ros_com/src/app/fireforce/fireforce.cpp:363:9:[m[K [01;36m[Knote: [m[Khere
-  363 |         [01;36m[Kcase[m[K 0:
-      |         [01;36m[K^~~~[m[K

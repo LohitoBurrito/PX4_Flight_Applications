@@ -1,7 +1,0 @@
-[01m[K/home/lohitoburrito/uav_app/src/px4_ros_com/src/app/fireforce/fireforce.cpp:[m[K In member function ‘[01m[Kvoid UAVCommand::read_camera_image_raw(sensor_msgs::msg::Image_<std::allocator<void> >::SharedPtr)[m[K’:
-[01m[K/home/lohitoburrito/uav_app/src/px4_ros_com/src/app/fireforce/fireforce.cpp:246:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kimage_cnt_down[m[K’ was not declared in this scope
-  246 |         if ([01;31m[Kimage_cnt_down[m[K == 0) {
-      |             [01;31m[K^~~~~~~~~~~~~~[m[K
-gmake[2]: *** [CMakeFiles/fireforce.dir/build.make:76: CMakeFiles/fireforce.dir/src/app/fireforce/fireforce.cpp.o] Error 1
-gmake[1]: *** [CMakeFiles/Makefile2:336: CMakeFiles/fireforce.dir/all] Error 2
-gmake: *** [Makefile:146: all] Error 2

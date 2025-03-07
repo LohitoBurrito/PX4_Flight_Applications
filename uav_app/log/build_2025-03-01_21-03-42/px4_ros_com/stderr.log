@@ -1,7 +1,0 @@
-[01m[K/home/lohitoburrito/uav_app/src/px4_ros_com/src/app/fireforce/fireforce.cpp:[m[K In member function ‘[01m[Kvoid HTTPServer::post_frame()[m[K’:
-[01m[K/home/lohitoburrito/uav_app/src/px4_ros_com/src/app/fireforce/fireforce.cpp:153:24:[m[K [01;31m[Kerror: [m[Kreturn-statement with a value, in function returning ‘[01m[Kvoid[m[K’ [[01;31m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-fpermissive-fpermissive]8;;[m[K]
-  153 |                 return [01;31m[K1[m[K;
-      |                        [01;31m[K^[m[K
-gmake[2]: *** [CMakeFiles/fireforce.dir/build.make:76: CMakeFiles/fireforce.dir/src/app/fireforce/fireforce.cpp.o] Error 1
-gmake[1]: *** [CMakeFiles/Makefile2:336: CMakeFiles/fireforce.dir/all] Error 2
-gmake: *** [Makefile:146: all] Error 2

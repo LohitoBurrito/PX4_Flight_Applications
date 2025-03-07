@@ -1,6 +1,0 @@
-[01m[K/home/lohitoburrito/uav_app/src/px4_ros_com/src/app/fireforce/fireforce.cpp:170:91:[m[K [01;31m[Kerror: [m[Kcannot declare member function ‘[01m[Kstatic size_t UAVCommand::read_callback(void*, size_t, size_t, void*)[m[K’ to have static linkage [[01;31m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-fpermissive-fpermissive]8;;[m[K]
-  170 | static size_t UAVCommand::read_callback(void *ptr, size_t size, size_t nmemb, void *stream[01;31m[K)[m[K {
-      |                                                                                           [01;31m[K^[m[K
-gmake[2]: *** [CMakeFiles/fireforce.dir/build.make:76: CMakeFiles/fireforce.dir/src/app/fireforce/fireforce.cpp.o] Error 1
-gmake[1]: *** [CMakeFiles/Makefile2:336: CMakeFiles/fireforce.dir/all] Error 2
-gmake: *** [Makefile:146: all] Error 2

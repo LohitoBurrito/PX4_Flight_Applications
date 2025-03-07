@@ -1,5 +1,0 @@
-[ 12%] Built target frame_transforms
-[ 18%] [32mBuilding CXX object CMakeFiles/fireforce.dir/src/app/fireforce/fireforce.cpp.o[0m
-gmake[2]: *** [CMakeFiles/fireforce.dir/build.make:76: CMakeFiles/fireforce.dir/src/app/fireforce/fireforce.cpp.o] Interrupt
-gmake[1]: *** [CMakeFiles/Makefile2:336: CMakeFiles/fireforce.dir/all] Interrupt
-gmake: *** [Makefile:146: all] Interrupt

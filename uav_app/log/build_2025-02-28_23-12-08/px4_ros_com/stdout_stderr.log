@@ -1,9 +1,0 @@
-[ 12%] Built target frame_transforms
-[ 18%] [32mBuilding CXX object CMakeFiles/fireforce.dir/src/app/fireforce/fireforce.cpp.o[0m
-[01m[K/home/lohitoburrito/uav_app/src/px4_ros_com/src/app/fireforce/fireforce.cpp:[m[K In member function ‘[01m[Kvoid UAVCommand::run_mission()[m[K’:
-[01m[K/home/lohitoburrito/uav_app/src/px4_ros_com/src/app/fireforce/fireforce.cpp:316:10:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kdist[m[K’ set but not used [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-but-set-variable-Wunused-but-set-variable]8;;[m[K]
-  316 |     auto [01;35m[Kdist[m[K = [] (float x1, float y1, float z1, float x2, float y2, float z2) {
-      |          [01;35m[K^~~~[m[K
-gmake[2]: *** [CMakeFiles/fireforce.dir/build.make:76: CMakeFiles/fireforce.dir/src/app/fireforce/fireforce.cpp.o] Interrupt
-gmake[1]: *** [CMakeFiles/Makefile2:336: CMakeFiles/fireforce.dir/all] Interrupt
-gmake: *** [Makefile:146: all] Interrupt

@@ -1,8 +1,0 @@
-[0.411s] Invoking command in '/home/lohitoburrito/uav_app/build/px4_ros_com': CMAKE_PREFIX_PATH=/home/lohitoburrito/uav_app/install/px4_msgs:/home/lohitoburrito/uav_app/install/px4_ros_com:/opt/ros/humble LD_LIBRARY_PATH=/home/lohitoburrito/uav_app/install/px4_msgs/lib:/home/lohitoburrito/uav_app/install/px4_ros_com/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib /usr/bin/cmake --build /home/lohitoburrito/uav_app/build/px4_ros_com -- -j8 -l8
-[1.109s] [ 12%] Built target frame_transforms
-[1.154s] [35m[1mConsolidate compiler generated dependencies of target fireforce[0m
-[1.206s] [ 18%] [32mBuilding CXX object CMakeFiles/fireforce.dir/src/app/fireforce/fireforce.cpp.o[0m
-[184.421s] gmake[2]: *** [CMakeFiles/fireforce.dir/build.make:76: CMakeFiles/fireforce.dir/src/app/fireforce/fireforce.cpp.o] Interrupt
-[184.447s] gmake[1]: *** [CMakeFiles/Makefile2:336: CMakeFiles/fireforce.dir/all] Interrupt
-[184.448s] gmake: *** [Makefile:146: all] Interrupt
-[185.031s] Invoked command in '/home/lohitoburrito/uav_app/build/px4_ros_com' returned '-2': CMAKE_PREFIX_PATH=/home/lohitoburrito/uav_app/install/px4_msgs:/home/lohitoburrito/uav_app/install/px4_ros_com:/opt/ros/humble LD_LIBRARY_PATH=/home/lohitoburrito/uav_app/install/px4_msgs/lib:/home/lohitoburrito/uav_app/install/px4_ros_com/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib /usr/bin/cmake --build /home/lohitoburrito/uav_app/build/px4_ros_com -- -j8 -l8
