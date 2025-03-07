@@ -79,7 +79,6 @@ void UAVNode::run_camera_threshold(const cv::Mat& output, std::vector<cv::Rect>&
 * @link 
 */
 void UAVNode::read_camera_image_raw(const sensor_msgs::msg::Image::SharedPtr msg) {
-
     try {
 
         RCLCPP_INFO(this->get_logger(), "===============IMAGE RETRIEVED===============");
@@ -103,30 +102,7 @@ void UAVNode::read_camera_image_raw(const sensor_msgs::msg::Image::SharedPtr msg
         std::vector<int> indices;
         cv::dnn::NMSBoxes(boxes, scores, thresh, nms_thresh, indices);
 
-        if (indices.size() == 0)
-            marker_x = marker_y = -1;
-
-        // Process Output
-        for (int idx : indices) {
-
-            int id = static_cast<int>(output.at<float>(0, idx, 5));
-            std::string label = (id == 0) ? "target" : "empty";
-            int label_x = boxes[idx].x;
-            int label_y = boxes[idx].y - 10; 
-            cv::putText(resized_frame, label, cv::Point(label_x, label_y), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 0), 2);
-            cv::rectangle(resized_frame, boxes[idx], cv::Scalar(0, 255, 0), 2);
-
-            if (id == 0) {	
-
-                marker_x = boxes[idx].x + boxes[idx].width  / 2;
-                marker_y = boxes[idx].y + boxes[idx].height / 2;
-
-                vehicle_state.ms = -1;
-
-                break;
-            }
-
-        }
+        process_output(resized_frame, output, boxes, indices);
 
         // Debug output
         write_image(image_path, resized_frame);

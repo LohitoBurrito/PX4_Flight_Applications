@@ -40,6 +40,7 @@ class UAVNode : public rclcpp::Node {
         void read_local_position(const VehicleLocalPosition::UniquePtr msg);
         void read_camera_image_raw(const sensor_msgs::msg::Image::SharedPtr msg);
         void run_camera_threshold(const cv::Mat& output, std::vector<cv::Rect>& boxes, std::vector<float>& scores);
+        virtual void process_output(cv::Mat& resized_frame, const cv::Mat& output, const std::vector<cv::Rect>& boxes, const std::vector<int> indices) = 0;
 
         // Publisher Callbacks
 		void publish_offboard_control_mode(bool pos, bool vel);
@@ -55,6 +56,7 @@ class UAVNode : public rclcpp::Node {
         void write_file();
         void write_image(std::string image_path, cv::Mat resized_frame);
 
+        // Mission 
         virtual void run_mission() = 0;
 
     protected:

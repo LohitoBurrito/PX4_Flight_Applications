@@ -12,9 +12,7 @@
 #include <chrono>
 #include <iostream>
 
-using namespace std::chrono;
-using namespace std::chrono_literals;
-using namespace px4_msgs::msg;
+
 
 class HTTPPOSTServer : public rclcpp::Node {
     public:
@@ -126,12 +124,14 @@ class FireDetectNode : public UAVNode {
     public:
         // Node constructor
         explicit FireDetectNode();
-        //
+        
+        // Override
         void run_mission() override;
+        void process_output(cv::Mat& resized_frame, const cv::Mat& output, const std::vector<cv::Rect>& boxes, const std::vector<int> indices) override;
 };
 
 /**
-* @brief UAV Command node constructor
+* @brief FireDetectNode constructor
 * @link 
 */
 FireDetectNode::FireDetectNode() {
@@ -164,7 +164,39 @@ FireDetectNode::FireDetectNode() {
     timer_ = this->create_wall_timer(300ms, std::bind(&FireDetectNode::run_mission, this));
 }
 
+/**
+* @brief Process Yolov5 output
+* @param resized_frame frame that we will annotate on
+* @param output output of yolov5 model
+* @param boxes boxes related to indices
+* @param indices indices of most accurate inferences
+* @link 
+*/
+void FireDetectNode::process_output(cv::Mat& resized_frame, const cv::Mat& output, const std::vector<cv::Rect>& boxes, const std::vector<int> indices) {
+    if (indices.size() == 0)
+        marker_x = marker_y = -1;
 
+    // Process Output
+    for (int idx : indices) {
+
+        int id = static_cast<int>(output.at<float>(0, idx, 5));
+        std::string label = (id == 0) ? "fire" : "empty";
+        int label_x = boxes[idx].x;
+        int label_y = boxes[idx].y - 10; 
+        cv::putText(resized_frame, label, cv::Point(label_x, label_y), cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 0), 2);
+        cv::rectangle(resized_frame, boxes[idx], cv::Scalar(0, 255, 0), 2);
+
+        if (id == 0) {	
+
+            marker_x = boxes[idx].x + boxes[idx].width  / 2;
+            marker_y = boxes[idx].y + boxes[idx].height / 2;
+
+            vehicle_state.ms = -1;
+
+            break;
+        }
+    }
+}
 
 /**
 * @brief UAV Mission Checkpoints
@@ -304,7 +336,6 @@ void FireDetectNode::run_mission() {
     publish_trajectory_setpoint(vehicle_state.waypoint_x, vehicle_state.waypoint_y, vehicle_state.waypoint_z, vehicle_state.waypoint_yaw);
     
 }
-
 
 int main(int argc, char *argv[]) {
     setvbuf(stdout, NULL, _IONBF, BUFSIZ);
