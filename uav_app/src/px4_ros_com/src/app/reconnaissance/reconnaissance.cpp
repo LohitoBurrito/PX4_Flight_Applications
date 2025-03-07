@@ -16,7 +16,7 @@ class ReconCommand : public UAVNode {
 */
 ReconCommand::ReconCommand() {
 
-    std::cout << "=============================Instantiating UAV Command Node=============================" << std::endl;
+    std::cout << "============================Instantiating Recon Command Node============================" << std::endl;
 
     model_path = "src/px4_ros_com/src/app/reconnaissance/model/best.onnx";
     image_path = "src/px4_ros_com/src/app/reconnaissance/images/cv_frame.jpg";

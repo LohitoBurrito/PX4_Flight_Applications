@@ -139,7 +139,7 @@ class FireDetectNode : public UAVNode {
 */
 FireDetectNode::FireDetectNode() {
 
-    std::cout << "=============================Instantiating UAV Command Node=============================" << std::endl;
+    std::cout << "==========================Instantiating FireForce Command Node==========================" << std::endl;
 
     model_path = "src/px4_ros_com/src/app/fireforce/model/best.onnx";
     image_path = "src/px4_ros_com/src/app/fireforce/images/cv_frame.jpg";
