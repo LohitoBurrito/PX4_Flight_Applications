@@ -19,3 +19,16 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+This project uses PX4, which is licensed under the BSD-3-Clause License.
+
+BSD 3-Clause License  
+Copyright (c) [year] PX4 Development Team  
+All rights reserved.
+
+The original PX4 project is available at: https://github.com/PX4/PX4-Autopilot
+
+This project uses Ultralytics' YOLOv5, which is licensed under the GNU General Public License v3.0 (GPL-3.0).
+
+Original YOLOv5 repository: https://github.com/ultralytics/yolov5
+
