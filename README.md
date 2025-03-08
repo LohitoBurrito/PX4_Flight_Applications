@@ -9,7 +9,16 @@ Note that my main ROS2 C++ control code is located within
 ./uav_app/src/px4_ros_com/src/app
 `
 
-## ⭐ Base Repositories & Credits ⭐ <br />
+## Acknowledgments
+
+This project uses **PX4** for flight control, which is licensed under the BSD-3-Clause License.  
+For more information, visit [PX4's GitHub Repository](https://github.com/PX4/PX4-Autopilot).
+
+This project uses Ultralytics' YOLOv5, which is licensed under the GNU General Public License v3.0 (GPL-3.0).
+
+Original YOLOv5 repository: https://github.com/ultralytics/yolov5
+
+## ⭐ Base Repositories & Documentation ⭐ <br />
 ① [PX4 Documentation](https://docs.px4.io/main/en/ros2/user_guide.html) <br />
 ② [PX4 ROS2 Message Repo](https://github.com/PX4/px4_msgs) <br />
 ③ [PX4 ROS2 Communication Repo](https://github.com/PX4/px4_ros_com) <br />
