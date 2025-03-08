@@ -9,7 +9,7 @@ Note that my main ROS2 C++ control code is located within
 ./uav_app/src/px4_ros_com/src/app
 `
 
-## ⭐ Base Repositories ⭐ <br />
+## ⭐ Base Repositories & Credits ⭐ <br />
 ① [PX4 Documentation](https://docs.px4.io/main/en/ros2/user_guide.html) <br />
 ② [PX4 ROS2 Message Repo](https://github.com/PX4/px4_msgs) <br />
 ③ [PX4 ROS2 Communication Repo](https://github.com/PX4/px4_ros_com) <br />
