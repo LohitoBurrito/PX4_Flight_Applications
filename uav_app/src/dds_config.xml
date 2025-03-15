@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+
+    <!-- default publisher profile -->
+    <publisher profile_name="default_publisher" is_default_profile="true">
+        <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+    </publisher>
+
+    <!-- publisher profile for topic sync_topic -->
+    <publisher profile_name="/px4_msgs/msg/VehicleLocalPosition">
+        <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+        <qos>
+            <publishMode>
+                <kind>ASYNCHRONOUS</kind>
+            </publishMode>
+        </qos>
+    </publisher>
+    
+    <!-- subscriber profile for topic sync_topic -->
+    <subscriber profile_name="default_subscriber" is_default_profile="true">
+	<historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+    </subscriber>
+
+</profiles>
